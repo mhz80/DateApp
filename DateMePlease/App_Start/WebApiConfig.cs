@@ -21,6 +21,12 @@ namespace DateMePlease
       config.MapHttpAttributeRoutes();
 
       config.Routes.MapHttpRoute(
+          name: "PhotoApi",
+          routeTemplate: "api/profile/photos/{id}",
+          defaults: new { id = RouteParameter.Optional, controller = "Photo" }
+      );
+
+      config.Routes.MapHttpRoute(
           name: "DefaultApi",
           routeTemplate: "api/{controller}/{id}",
           defaults: new { id = RouteParameter.Optional }

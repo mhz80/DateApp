@@ -25,6 +25,31 @@ namespace DateMePlease.Converters
       dest.Demographics.Gender = src.Gender;
       dest.Demographics.Orientation = src.Orientation;
 
+      // Update or Create
+      foreach (var vm in src.Photos)
+      {
+        var toUpdate = dest.Photos.SingleOrDefault(p => p.Id == vm.Id); //overwrite Equals or replace comparison with an Id comparison
+        if (toUpdate == null)
+        {
+          var newPhoto = AutoMapper.Mapper.Map<Photo>(vm);
+          newPhoto.DateAdded = DateTime.UtcNow;
+          dest.Photos.Add(newPhoto);
+        }
+        else
+        {
+          AutoMapper.Mapper.Map(vm, toUpdate);
+        }
+      }
+
+      // Delete
+      foreach (var photo in dest.Photos)
+      {
+        if (!src.Photos.Any(p => p.Id == photo.Id))
+        {
+          dest.Photos.Remove(photo);
+        }
+      }
+
       return dest;
 
     }

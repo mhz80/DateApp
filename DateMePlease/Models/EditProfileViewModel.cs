@@ -36,5 +36,7 @@ namespace DateMePlease.Models
     [DisplayName("Sexual Orientation")]
     [Required]
     public string Orientation { get; set; }
+
+    public ICollection<PhotoViewModel> Photos { get; set; }
   }
 }

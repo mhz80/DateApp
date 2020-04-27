@@ -33,6 +33,8 @@ namespace DateMePlease
         config.CreateMap<EditProfileViewModel, Profile>()
           .ConvertUsing<EditProfileToProfileConverter>();
 
+        config.CreateMap<Photo, PhotoViewModel>()
+          .ReverseMap();
 
       });
     }

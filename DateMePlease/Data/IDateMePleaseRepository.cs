@@ -10,6 +10,7 @@ namespace DateMePlease.Data
     Profile GetProfile(string memberName);
     List<RandomProfileViewModel> GetRandomProfiles(int numberToReturn);
     EditProfileViewModel GetProfileForEdit(string userName);
+    EditProfileViewModel GetProfileWithPhotosForEdit(string userName);
     List<InterestType> GetInterestTypes();
 
     bool SaveAll();

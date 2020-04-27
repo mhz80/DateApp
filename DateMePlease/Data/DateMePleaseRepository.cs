@@ -83,5 +83,20 @@ namespace DateMePlease.Data
     {
       return _context.InterestTypes.OrderBy(i => i.Name).ToList();
     }
+
+
+    public EditProfileViewModel GetProfileWithPhotosForEdit(string userName)
+    {
+      var lowerUserName = userName.ToLowerInvariant();
+
+      var query = _context.Profile
+                     .Include("Demographics")
+                     .Include("Member")
+                     .Include("Photos")
+                  .Where(p => p.Member.UserName.ToLower() == lowerUserName)
+                  .Project().To<EditProfileViewModel>();
+
+      return query.FirstOrDefault();
+    }
   }
 }
