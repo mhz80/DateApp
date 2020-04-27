@@ -9,7 +9,9 @@ namespace DateMePlease.Entities
   {
     public int Id { get; set; }
 
-    public string Username { get; set; }
+    public string UserName { get; set; } // To link with Identity
+    public string MemberName { get; set; } // Visible Username
+
     public DateTime LastLogin { get; set; }
     public DateTime Created { get; set; }
 

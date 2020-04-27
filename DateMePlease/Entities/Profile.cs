@@ -13,11 +13,11 @@ namespace DateMePlease.Entities
     public string Introduction { get; set; }
     public string Pitch { get; set; }
 
-    public Member Member { get; set; }
+    public virtual Member Member { get; set; }
 
-    public Demographics Demographics { get; set; }
+    public virtual Demographics Demographics { get; set; }
 
-    public ICollection<Interest> Interests { get; set; }
-    public ICollection<Photo> Photos { get; set; }
+    public virtual ICollection<Interest> Interests { get; set; }
+    public virtual ICollection<Photo> Photos { get; set; }
   }
 }

@@ -15,10 +15,11 @@ namespace DateMePlease.Data
     {
       this.Configuration.LazyLoadingEnabled = false;
       this.Configuration.ProxyCreationEnabled = false;
-      Database.SetInitializer<DateMePleaseContext>(new DropCreateDatabaseIfModelChanges<DateMePleaseContext>());
+      Database.SetInitializer<DateMePleaseContext>(new DateMePleaseInitializer());
     }
 
     public DbSet<Member> Members { get; set; }
+    public DbSet<InterestType> InterestTypes { get; set; }
     public DbSet<Interest> Interests { get; set; }
     public DbSet<Demographics> Demographics { get; set; }
     public DbSet<Favorite> Favorites { get; set; }
@@ -32,8 +33,8 @@ namespace DateMePlease.Data
 
       modelBuilder.Entity<Member>()
         .HasOptional<Profile>(m => m.Profile)
-        .WithOptionalDependent(p => p.Member)
-        .Map(p => p.MapKey("ProfileId"));
+        .WithRequired(m => m.Member)
+        .Map(p => p.MapKey("MemberId"));
     }
   }
 }

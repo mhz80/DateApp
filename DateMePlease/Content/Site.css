@@ -15,3 +15,28 @@ body {
 .nav > li > a:focus, .nav > li > a:hover {
   color: red;
 }
+
+.btn.btn-primary,  
+.btn.btn-success, 
+.btn.btn-warning, 
+.btn.btn-info {
+  color: #fff !important;
+}
+
+.btn.btn-default {
+  color: #222 !important;
+}
+
+.member-ad {
+  padding: 3px;
+}
+
+.foot blockquote {
+  padding: 5px 40px;
+  line-height: 24px;
+}
+
+.field-validation-error {
+color: red;
+font-style: italic;
+}

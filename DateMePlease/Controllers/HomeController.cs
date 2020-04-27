@@ -9,11 +9,14 @@ namespace DateMePlease.Controllers
 {
   public class HomeController : Controller
   {
+    private IDateMePleaseRepository _repository;
+    public HomeController(IDateMePleaseRepository repository)
+    {
+      _repository = repository;
+    }
+
     public ActionResult Index()
     {
-      var ctx = new DateMePleaseContext();
-      var members = ctx.Members.ToList();
-
       return View();
     }
 
@@ -28,6 +31,11 @@ namespace DateMePlease.Controllers
     {
       ViewBag.Message = "Your contact page.";
 
+      return View();
+    }
+
+    public ActionResult Acknowledgements()
+    {
       return View();
     }
   }
