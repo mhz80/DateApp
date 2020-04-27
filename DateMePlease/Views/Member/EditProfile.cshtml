@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DateMePlease.Models.EditProfileViewModel
+@{
   ViewBag.Title = "Edit Your Profile";
 }
 
@@ -18,14 +19,17 @@
     <h1>Edit Your Profile</h1>
   </div>
   <div class="row">
+
     <form id="profileForm" novalidate action="@Url.Action("SaveProfile", "Member")" method="post">
       <div class="col-lg-10">
 
+        @Html.HiddenFor(p => p.MemberName)
+
         <div class="form-inline">
           <div class="form-group">
-            <label for="birthdate">Birthdate:</label>
+            @Html.LabelFor(p => p.Birthdate)
             <div class='input-group date'>
-              <input type="text" class="form-control" id="birthdate" name="birthdate" />
+              @Html.TextBoxFor(p => p.Birthdate, new { @class = "form-control" })
               <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
               </span>
@@ -33,26 +37,26 @@
           </div>
 
           <div class="form-group">
-            <label for="gender">Gender:</label>
-            <input type="text" class="form-control" id="gender" name="gender" />
+            @Html.LabelFor(p => p.Gender)
+            @Html.TextBoxFor(p => p.Gender, new { @class = "form-control" } )
           </div>
 
           <div class="form-group">
-            <label for="orientation">Sexual Orientation:</label>
-            <input type="text" class="form-control" id="orientation" name="orientation" />
+            @Html.LabelFor(p => p.Orientation)
+            @Html.TextBoxFor(p => p.Orientation, new { @class = "form-control" })
           </div>
         </div>
         <div>
-          <label for="lookingFor">Looking For:</label>
-          <textarea class="form-control" rows="2" id="lookingFor" name="lookingFor"></textarea>
+          @Html.LabelFor(p => p.LookingFor)
+          @Html.TextAreaFor(p => p.LookingFor, new { @class = "form-control", rows = 2 })
         </div>
         <div class="form-group">
-          <label for="intro">Introduction:</label>
-          <textarea class="form-control" rows="6" id="intro" name="intro"></textarea>
+          @Html.LabelFor(p => p.Introduction)
+          @Html.TextAreaFor(p => p.Introduction, new { @class = "form-control", rows = 6 })
         </div>
         <div class="form-group">
-          <label for="pitch">Pitch:</label>
-          <textarea class="form-control" rows="2" id="pitch" name="pitch"></textarea>
+          @Html.LabelFor(p => p.Pitch)
+          @Html.TextAreaFor(p => p.Pitch, new { @class = "form-control", rows = 2 })
         </div>
         <div class="form-group pull-right">
           <a href="@Url.Action("EditPhotos", "Member")" class="btn btn-primary">Edit Photos</a>

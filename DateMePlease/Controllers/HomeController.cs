@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DateMePlease.Data;
+using DateMePlease.Models;
 
 namespace DateMePlease.Controllers
 {
@@ -17,7 +18,9 @@ namespace DateMePlease.Controllers
 
     public ActionResult Index()
     {
-      return View();
+      var randomProfiles = _repository.GetRandomProfiles(6);
+
+      return View(randomProfiles);
     }
 
     public ActionResult About()

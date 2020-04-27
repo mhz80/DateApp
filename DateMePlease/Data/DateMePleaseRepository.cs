@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DateMePlease.Entities;
+using DateMePlease.Models;
+using AutoMapper.QueryableExtensions;
 
 namespace DateMePlease.Data
 {
@@ -38,14 +40,31 @@ namespace DateMePlease.Data
                      .Where(m => m.Member.MemberName.ToLower() == lowerMemberName).FirstOrDefault();
     }
 
-    public List<Profile> GetRandomProfiles(int numberToReturn)
+    public List<RandomProfileViewModel> GetRandomProfiles(int numberToReturn)
     {
-      return _context.Profile.Include("Photos")
+      var profiles = _context.Profile.Include("Photos")
                              .Include("Member")
                              .OrderBy(p => Guid.NewGuid())
                              .Take(numberToReturn)
+                             .Project().To<RandomProfileViewModel>()
                              .ToList();
+
+      return profiles;
     }
+
+    public EditProfileViewModel GetProfileForEdit(string userName)
+    {
+      var lowerUserName = userName.ToLowerInvariant();
+
+      var query = _context.Profile
+                     .Include("Demographics")
+                     .Include("Member")
+                  .Where(p => p.Member.UserName.ToLower() == lowerUserName)
+                  .Project().To<EditProfileViewModel>();
+
+      return query.FirstOrDefault();
+    }
+
 
     public bool SaveAll()
     {

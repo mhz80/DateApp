@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DateMePlease.Data;
+using DateMePlease.Models;
 
 namespace DateMePlease.Controllers
 {
@@ -18,12 +19,20 @@ namespace DateMePlease.Controllers
 
     public ActionResult EditProfile()
     {
-      return View();
+      var data = _repository.GetProfileForEdit(User.Identity.Name);
+
+      return View(data);
     }
 
     [HttpPost]
-    public ActionResult SaveProfile()
+    public ActionResult SaveProfile(EditProfileViewModel model)
     {
+      var profile = _repository.GetProfile(model.MemberName);
+
+      AutoMapper.Mapper.Map(model, profile);
+
+      _repository.SaveAll();
+
       return View();
     }
 
