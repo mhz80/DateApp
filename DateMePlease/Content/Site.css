@@ -16,9 +16,9 @@ body {
   color: red;
 }
 
-.btn.btn-primary,  
-.btn.btn-success, 
-.btn.btn-warning, 
+.btn.btn-primary,
+.btn.btn-success,
+.btn.btn-warning,
 .btn.btn-info {
   color: #fff !important;
 }
@@ -37,7 +37,10 @@ body {
 }
 
 .field-validation-error {
-color: red;
-font-style: italic;
+  color: red;
+  font-style: italic;
 }
 
+.field-validation-valid {
+  display: none;
+}

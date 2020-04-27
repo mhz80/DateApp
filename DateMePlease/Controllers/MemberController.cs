@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DateMePlease.Data;
 using DateMePlease.Models;
+using DateMePlease.Extensions;
 
 namespace DateMePlease.Controllers
 {
@@ -25,13 +26,28 @@ namespace DateMePlease.Controllers
     }
 
     [HttpPost]
-    public ActionResult SaveProfile(EditProfileViewModel model)
+    public ActionResult EditProfile(EditProfileViewModel model)
     {
-      var profile = _repository.GetProfile(model.MemberName);
+      //var age = model.Birthdate.CalculateAge();
 
-      AutoMapper.Mapper.Map(model, profile);
+      //if (age < 18 || age > 120)
+      //{
+      //  ModelState.AddModelError("Birthdate", "You must be between 18 and 120 years old.");
+      //}
 
-      _repository.SaveAll();
+      //ModelState.AddModelError("", "The Postal Code isn't in the specified State");
+
+      if (ModelState.IsValid)
+      {
+        var profile = _repository.GetProfile(model.MemberName);
+
+        AutoMapper.Mapper.Map(model, profile);
+
+        if (_repository.SaveAll())
+        {
+          return RedirectToAction("ShowProfile");
+        }
+      }
 
       return View();
     }

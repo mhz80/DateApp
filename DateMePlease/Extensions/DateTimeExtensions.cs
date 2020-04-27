@@ -7,7 +7,7 @@ namespace DateMePlease.Extensions
 {
   public static class DateTimeExtensions
   {
-    public static int CalcuateAge(this DateTime theDateTime)
+    public static int CalculateAge(this DateTime theDateTime)
     {
       // Bruteforce Age
       var age = DateTime.Today.Year - theDateTime.Year;
