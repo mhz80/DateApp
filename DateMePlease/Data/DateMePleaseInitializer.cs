@@ -98,7 +98,7 @@ namespace DateMePlease.Data
             },
             Photos = new List<Photo>()
             {
-              new Photo() { Url = "/images/awkwardguy.jpg", DateAdded = DateTime.Now, IsMain = true }
+              new Photo() { Url = "/images/awkwardguy.jpg", DateAdded = DateTime.Now, Description = "My Face", IsMain = true }
             },
             Demographics = new Demographics() 
             {

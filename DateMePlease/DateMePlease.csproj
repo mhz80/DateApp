@@ -196,6 +196,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Converters\EditProfileToProfileConverter.cs" />
     <Compile Include="Data\DateMePleaseContext.cs" />
     <Compile Include="Data\DateMePleaseInitializer.cs" />

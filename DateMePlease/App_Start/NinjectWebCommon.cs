@@ -5,10 +5,12 @@ namespace DateMePlease.App_Start
 {
   using System;
   using System.Web;
+  using System.Web.Http;
   using DateMePlease.Data;
   using Microsoft.Web.Infrastructure.DynamicModuleHelper;
   using Ninject;
   using Ninject.Web.Common;
+  using WebApiContrib.IoC.Ninject;
 
   public static class NinjectWebCommon
   {
@@ -43,6 +45,9 @@ namespace DateMePlease.App_Start
       {
         kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
         kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+
+        // Support Ninject in Web API
+        GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
 
         RegisterServices(kernel);
         return kernel;
